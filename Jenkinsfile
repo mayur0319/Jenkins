@@ -8,10 +8,10 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
     }
 
-   agent {
-        docker {
-            image 'hashicorp/terraform:1.0.11'
-        }
+   agent any
+    stage('Initialize'){
+        def terraformHome = tool 'terraform'
+        env.PATH = "${terraformHome}/bin:${env.PATH}"
     }
     stages {
         stage('Clean Workspace') {
