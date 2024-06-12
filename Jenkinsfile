@@ -9,17 +9,12 @@ pipeline {
     }
 
    agent any
-    stage('Initialize'){
-        def terraformHome = tool 'terraform'
-        env.PATH = "${terraformHome}/bin:${env.PATH}"
-    }
+
     stages {
-        stage('Clean Workspace') {
-            steps {
-                cleanWs()  // Cleans the workspace
-            }
+        stage('Initialize'){
+            def terraformHome = tool 'terraform'
+            env.PATH = "${terraformHome}/bin:${env.PATH}"
         }
-        
         stage('checkout') {
             steps {
                  script{
