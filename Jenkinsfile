@@ -8,7 +8,11 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
     }
 
-   agent  any
+   agent {
+        docker {
+            image 'hashicorp/terraform:1.0.11'
+        }
+    }
     stages {
         stage('Clean Workspace') {
             steps {
